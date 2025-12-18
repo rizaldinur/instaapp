@@ -7,11 +7,13 @@ Route::get('/', function () {
     $posts = [
         (object) [
             'image_path' => 'https://picsum.photos/600/400',
-            'caption' => 'Post pertama di InstaApp'
+            'caption' => 'Post pertama di InstaApp',
+            'comments' => collect([])
         ],
         (object) [
             'image_path' => 'https://picsum.photos/600/400',
-            'caption' => 'Post kedua dengan caption'
+            'caption' => 'Post kedua dengan caption',
+            'comments' => collect([])
         ],
     ];
 
