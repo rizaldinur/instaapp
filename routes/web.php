@@ -3,7 +3,19 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $posts = [
+        (object) [
+            'image_path' => 'https://picsum.photos/600/400',
+            'caption' => 'Post pertama di InstaApp'
+        ],
+        (object) [
+            'image_path' => 'https://picsum.photos/600/400',
+            'caption' => 'Post kedua dengan caption'
+        ],
+    ];
+
+    return view('index', compact('posts'));
 });
 
 Route::get('/login', function () {
