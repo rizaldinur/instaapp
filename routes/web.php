@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
 
@@ -25,3 +26,7 @@ Route::post('/register', [AuthController::class, 'register'])
 Route::post('/posts', [PostController::class, 'store'])
     ->middleware('auth')
     ->name('posts.store');
+
+Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])
+    ->middleware('auth')
+    ->name('posts.like');

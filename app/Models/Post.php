@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Like;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -31,5 +32,15 @@ class Post extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+
+    public function isLikedByAuthUser()
+    {
+        if (!Auth::check()) {
+            return false;
+        }
+
+        return $this->likes->contains('user_id', Auth::id());
     }
 }
