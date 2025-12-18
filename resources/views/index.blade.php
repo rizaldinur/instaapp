@@ -53,6 +53,9 @@
                             <button class="btn p-0 border-0 bg-transparent" data-bs-toggle="collapse"
                                 data-bs-target="#comments-{{ $loop->index }}">
                                 <i class="bi bi-chat fs-4"></i>
+                                <span class="small">
+                                    {{ $post->comments->count() }}
+                                </span>
                             </button>
                         </div>
 
@@ -65,7 +68,7 @@
                                         <div class="mb-2">
                                             <strong>{{ $comment->user->name }}</strong>
                                             <div class="text-muted small">
-                                                {{ $comment->content }}
+                                                {{ $comment->body }}
                                             </div>
                                         </div>
                                     @endforeach
@@ -77,8 +80,13 @@
 
                             {{-- COMMENT FORM --}}
                             @auth
-                                <form>
-                                    <input type="text" class="form-control" placeholder="Tulis komentar...">
+                                <form action="{{ route('posts.comments.store', $post->id) }}" method="POST">
+                                    @csrf
+                                    <div class="input-group mt-2">
+                                        <input type="text" name="content" class="form-control"
+                                            placeholder="Tulis komentar..." required>
+                                        <button class="btn btn-primary">Kirim</button>
+                                    </div>
                                 </form>
                             @else
                                 <p class="text-muted fst-italic">
