@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
 
@@ -35,3 +36,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::get('/register', [AuthController::class, 'showRegister'])->middleware('guest')->name('register');
 Route::post('/register', [AuthController::class, 'register'])
     ->middleware('guest');
+
+Route::post('/posts', [PostController::class, 'store'])
+    ->middleware('auth')
+    ->name('posts.store');
