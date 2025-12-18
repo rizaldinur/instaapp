@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
@@ -30,3 +31,7 @@ Route::post('/posts', [PostController::class, 'store'])
 Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])
     ->middleware('auth')
     ->name('posts.like');
+
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])
+    ->middleware('auth')
+    ->name('posts.comments.store');
