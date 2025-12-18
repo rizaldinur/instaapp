@@ -74,5 +74,5 @@ DB_PASSWORD=...
 ## 🎥 Demo Aplikasi
 
 📺 Video Demo:
-
-
+[![Tonton videonya!](https://img.youtube.com/vi/ZmAIaX0rCWE/maxresdefault.jpg)](https://youtu.be/ZmAIaX0rCWE)
+[Tonton videonya!](https://youtu.be/ZmAIaX0rCWE)
