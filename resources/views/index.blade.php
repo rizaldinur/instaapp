@@ -7,12 +7,12 @@
 
 
             {{-- LOOP POSTS --}}
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <div class="card mb-4 shadow-sm border-0">
 
 
                     {{-- FOTO POST --}}
-                    <img src="{{ $post->image_path }}" class="card-img-top" alt="Post Image">
+                    <img src="{{ asset('storage/' . $post->image_path) }}" class="card-img-top" alt="Post Image">
 
 
                     <div class="card-body">
@@ -76,7 +76,11 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p class="text-center fst-italic text-muted">
+                    Belum ada postingan.
+                </p>
+            @endforelse
 
 
         </div>
