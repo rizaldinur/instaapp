@@ -55,9 +55,9 @@
 
                 @auth
                     <!-- Create Post -->
-                    <a href="#" class="text-white" title="Create Post">
+                    <button class="btn text-white" data-bs-toggle="modal" data-bs-target="#createPostModal">
                         <i class="bi bi-plus-square fs-4"></i>
-                    </a>
+                    </button>
 
 
                     <!-- My Posts -->
@@ -80,6 +80,57 @@
 
     <main class="container py-5">
         @yield('content')
+        @auth
+            <div class="modal fade" id="createPostModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Buat Post</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+
+                        <form method="POST" enctype="multipart/form-data">
+                            @csrf
+
+
+                            <div class="modal-body">
+
+
+                                {{-- Upload Gambar --}}
+                                <div class="mb-3">
+                                    <label class="form-label">Gambar</label>
+                                    <input type="file" name="image" class="form-control" accept="image/*" required>
+                                </div>
+
+
+                                {{-- Caption --}}
+                                <div class="mb-3">
+                                    <label class="form-label">Caption</label>
+                                    <textarea name="caption" class="form-control" rows="3" placeholder="Tulis caption..." required></textarea>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Batal
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    Kirim
+                                </button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endauth
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
