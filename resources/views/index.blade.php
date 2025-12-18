@@ -26,13 +26,25 @@
                         <div class="d-flex align-items-center gap-3 mb-3">
                             {{-- LIKE --}}
                             @auth
-                                <button class="btn p-0 border-0 bg-transparent">
-                                    <i class="bi bi-heart fs-4"></i>
-                                </button>
+                                <form action="{{ route('posts.like', $post->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button class="btn p-0 border-0 bg-transparent">
+                                        <i
+                                            class="bi fs-4
+            {{ $post->isLikedByAuthUser() ? 'bi-heart-fill text-danger' : 'bi-heart' }}">
+                                        </i>
+                                        <span class="small">
+                                            {{ $post->likes->count() }}
+                                        </span>
+                                    </button>
+                                </form>
                             @else
                                 <button class="btn p-0 border-0 bg-transparent" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="Harus login">
                                     <i class="bi bi-heart fs-4 text-muted"></i>
+                                    <span class="small">
+                                        {{ $post->likes->count() }}
+                                    </span>
                                 </button>
                             @endauth
 
