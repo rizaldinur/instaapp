@@ -140,6 +140,16 @@
             tooltipTriggerList.map(function(tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             })
+
+            // Disable submit button on form submit
+            const form = document.querySelector('#createPostModal form');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Mengirim...';
+                });
+            }
         });
     </script>
 
